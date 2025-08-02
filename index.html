@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Raspadinha da Esperança</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+    header {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+    }
+    header img {
+      height: 50px;
+    }
+    .banner {
+      width: 100%;
+      background: #111;
+      padding: 10px;
+      text-align: center;
+    }
+    .ganhadores {
+      display: flex;
+      justify-content: space-around;
+      background: #111;
+      padding: 15px 10px;
+      margin-top: 10px;
+    }
+    .ganhador-box {
+      background: #333;
+      padding: 10px;
+      border-radius: 8px;
+      width: 45%;
+      text-align: center;
+    }
+    .ganhador-box h3 {
+      margin: 5px 0;
+      color: #ffcc00;
+    }
+    .jogo {
+      background: #111;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #444;
+    }
+    .jogo h2 {
+      color: #0f0;
+      margin-bottom: 10px;
+    }
+    .jogo p {
+      margin: 5px 0;
+    }
+    .btn-jogar {
+      background: #ffcc00;
+      color: #000;
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 15px;
+      display: inline-block;
+      text-decoration: none;
+    }
+    footer {
+      display: none;
+    }
+    /* ÍCONE FLUTUANTE DE AJUDA */
+    .help-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffcc00;
+      color: #000;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      box-shadow: 0 0 10px #000;
+      cursor: pointer;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="Logo Raspadinha">
+  </header>
+
+  <!-- Banner atualizado com a imagem 688432b490c64-10.webp -->
+  <div class="banner">
+    <img src="assets/688432b490c64-10.webp" style="width:100%; max-width:500px; border-radius:10px;">
+  </div>
+
+  <div class="ganhadores">
+    <div class="ganhador-box">
+      <h3>GANHADORES HOJE</h3>
+      <p id="ganhador">Aguardando...</p>
+    </div>
+    <div class="ganhador-box">
+      <h3>ÚLTIMOS PRÊMIOS</h3>
+      <p id="premio">Aguardando...</p>
+    </div>
+  </div>
+
+  <div class="jogo">
+    <!-- Aqui agora está a imagem images (3).jpeg -->
+    <img src="assets/images (3).jpeg" style="width:100%; max-width:400px; border-radius:8px; margin-bottom:15px;">
+    <h2>Raspadinha da Esperança</h2>
+    <p>Prêmios até R$ 1.000,00 no Pix</p>
+    <a href="pagamento.html" class="btn-jogar">JOGAR AGORA →</a>
+  </div>
+
+  <!-- Botão flutuante de ajuda -->
+  <div class="help-button" onclick="mostrarAjuda()">?</div>
+
+  <!-- Scripts -->
+  <script>
+    function atualizarGanhadorEPremio() {
+      const nomes = ["Lucas Silva", "Maria Costa", "João Souza", "Ana Oliveira", "Carlos Lima", "Fernanda Rocha"];
+      const nome = nomes[Math.floor(Math.random() * nomes.length)];
+      const valor = (Math.random() * 1000).toFixed(2).replace('.', ',');
+      document.getElementById("ganhador").innerText = nome;
+      document.getElementById("premio").innerText = `R$ ${valor}`;
+    }
+
+    function mostrarAjuda() {
+      alert("Como funciona a Raspadinha:\n\nO jogo possui 9 raspadinhas e você tem 3 tentativas para encontrar prêmios escondidos. Boa sorte!");
+    }
+
+    atualizarGanhadorEPremio();
+    setInterval(atualizarGanhadorEPremio, 10800000); // 3 horas
+  </script>
+</body>
+</html>

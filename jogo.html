@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎯 Raspadinha da Esperança</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #ffcc00;
+      font-size: 30px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    #tentativas {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #00ff00;
+    }
+
+    .tabuleiro {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      width: 100%;
+      max-width: 360px;
+      margin-bottom: 30px;
+    }
+
+    .quadrado {
+      width: 100%;
+      aspect-ratio: 1;
+      background: #222;
+      border-radius: 16px;
+      box-shadow: inset 0 0 10px #000, 0 0 10px #ffcc00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+
+    .quadrado:hover {
+      background: #333;
+      transform: scale(1.05);
+    }
+
+    .raspado {
+      background: #444 !important;
+      cursor: default;
+      box-shadow: inset 0 0 15px #000;
+      color: #888;
+      transform: none !important;
+    }
+
+    #resultado {
+      font-size: 20px;
+      color: #ff3333;
+      display: none;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #aaa;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Raspadinha da Esperança 🪙</h1>
+  <div id="tentativas">Tentativas restantes: 3</div>
+
+  <div class="tabuleiro" id="tabuleiro">
+    <!-- Quadrados são criados via JS -->
+  </div>
+
+  <div id="resultado"></div>
+
+  <footer>
+    Boa sorte! 🍀 Divirta-se com responsabilidade.<br>
+    © 2025 Raspadinha da Esperança
+  </footer>
+
+  <script>
+    const tabuleiro = document.getElementById('tabuleiro');
+    const tentativasEl = document.getElementById('tentativas');
+    const resultadoEl = document.getElementById('resultado');
+
+    const totalQuadrados = 9;
+    let tentativasRestantes = 3;
+    let quadrados = [];
+
+    // Gerar valores aleatórios para os 9 quadrados
+    const valores = [];
+    for (let i = 0; i < totalQuadrados; i++) {
+      const val = (Math.random() * 1000).toFixed(2).replace('.', ',');
+      valores.push(`R$ ${val}`);
+    }
+
+    // Criar quadrados com emoji inicial
+    for (let i = 0; i < totalQuadrados; i++) {
+      const div = document.createElement('div');
+      div.classList.add('quadrado');
+      div.dataset.index = i;
+      div.innerText = '🔒';
+      tabuleiro.appendChild(div);
+      quadrados.push(div);
+    }
+
+    // Evento de clique
+    tabuleiro.addEventListener('click', rasparQuadrado);
+
+    function rasparQuadrado(e) {
+      const div = e.target;
+      if (!div.classList.contains('quadrado')) return;
+      if (div.classList.contains('raspado')) return;
+      if (tentativasRestantes <= 0) return;
+
+      tentativasRestantes--;
+      tentativasEl.innerText = `Tentativas restantes: ${tentativasRestantes}`;
+
+      div.innerText = '❌';
+      div.classList.add('raspado');
+
+      if (tentativasRestantes === 0) {
+        mostrarResultadoFinal();
+      }
+    }
+
+    function mostrarResultadoFinal() {
+      resultadoEl.style.display = 'block';
+      resultadoEl.innerText = '😢 Você perdeu! Veja os prêmios escondidos :';
+
+      for (let i = 0; i < totalQuadrados; i++) {
+        const div = quadrados[i];
+        if (!div.classList.contains('raspado')) {
+          div.innerText = valores[i];
+          div.classList.add('raspado');
+          div.style.color = '#ffcc00';
+          div.style.fontWeight = 'bold';
+          div.style.background = '#222';
+          div.style.boxShadow = '0 0 15px #ffcc00';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

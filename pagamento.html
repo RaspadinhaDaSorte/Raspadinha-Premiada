@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💰 Pagamento - Raspadinha da Esperança</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .pix-box {
+      background: #111;
+      border: 2px solid #ffcc00;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .pix-chave {
+      word-wrap: break-word;
+      font-size: 14px;
+      margin-top: 10px;
+      background: #222;
+      padding: 10px;
+      border-radius: 8px;
+      color: #ffcc00;
+    }
+
+    .btn-copiar,
+    .btn-pagar {
+      background: #ffcc00;
+      color: #000;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    .btn-copiar:hover,
+    .btn-pagar:hover {
+      background: #ffd700;
+    }
+
+    input[type="file"] {
+      margin-top: 20px;
+      padding: 10px;
+      background: #222;
+      border: 1px solid #555;
+      border-radius: 8px;
+      color: #fff;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .btn-pagar {
+      display: none;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💳 Efetue o pagamento para jogar</h1>
+  <p style="font-size: 18px;">Valor: <strong>R$ 10,00</strong></p>
+
+  <div class="pix-box">
+    <p>🔑 <strong>Chave Pix (Copie e cole):</strong></p>
+    <div class="pix-chave" id="chavePix">
+      00020126580014BR.GOV.BCB.PIX01360bb07ceb-96a0-4d48-b62e-29973d10b764520400005303986540510.005802BR5925Diego Vinicius Coelho Fur6009SAO PAULO62140510lMFoB4pbpX6304E074
+    </div>
+    <button class="btn-copiar" onclick="copiarChave()">📋 Copiar Chave Pix</button>
+  </div>
+
+  <p>📸 Envie o comprovante de pagamento:</p>
+  <input type="file" id="comprovante" accept="image/*,.pdf" onchange="mostrarBotao()" />
+
+  <button class="btn-pagar" id="btnJogar" onclick="confirmarPagamento()">✅ Jogar Agora</button>
+
+  <footer>
+    © 2025 Raspadinha da Esperança 🎯
+  </footer>
+
+  <script>
+    function copiarChave() {
+      const chave = document.getElementById("chavePix").innerText;
+      navigator.clipboard.writeText(chave).then(() => {
+        alert("📋 Chave Pix copiada com sucesso!");
+      }).catch(() => {
+        alert("❌ Não foi possível copiar.");
+      });
+    }
+
+    function mostrarBotao() {
+      const input = document.getElementById("comprovante");
+      const btn = document.getElementById("btnJogar");
+      if (input.files.length > 0) {
+        btn.style.display = "inline-block";
+      } else {
+        btn.style.display = "none";
+      }
+    }
+
+    function confirmarPagamento() {
+      alert("✅ Pagamento confirmado com sucesso!");
+      window.location.href = "jogo.html";
+    }
+  </script>
+
+</body>
+</html>
