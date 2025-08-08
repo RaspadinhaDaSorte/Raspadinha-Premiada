@@ -139,13 +139,11 @@
       alert("Como funciona a Raspadinha:\n\nO jogo possui 9 raspadinhas e você tem 3 tentativas para encontrar prêmios escondidos. Boa sorte!");
     }
 
-    // Verifica se o usuário está logado
+    // Redireciona para login.html se o usuário não estiver logado
     const nomeUsuario = localStorage.getItem("usuario");
     if (!nomeUsuario) {
-      // Redireciona para login se não estiver logado
       window.location.href = "login.html";
     } else {
-      // Exibe a mensagem personalizada se estiver logado
       document.getElementById("boasVindas").innerText = `👋 Olá, ${nomeUsuario}! Seja bem-vindo(a) à Raspadinha da Esperança!`;
     }
 
