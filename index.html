@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=login.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Raspadinha da Esperança</title>
   <style>
@@ -74,7 +75,6 @@
     footer {
       display: none;
     }
-    /* ÍCONE FLUTUANTE DE AJUDA */
     .help-button {
       position: fixed;
       bottom: 20px;
@@ -99,12 +99,10 @@
     <img src="assets/logo.png" alt="Logo Raspadinha">
   </header>
 
-  <!-- Mensagem de boas-vindas -->
   <div id="boasVindas" style="background:#111; color:#0f0; text-align:center; padding:10px; font-size:18px;">
     Bem-vindo!
   </div>
 
-  <!-- Banner atualizado com a imagem 688432b490c64-10.webp -->
   <div class="banner">
     <img src="assets/688432b490c64-10.webp" style="width:100%; max-width:500px; border-radius:10px;">
   </div>
@@ -121,17 +119,14 @@
   </div>
 
   <div class="jogo">
-    <!-- Aqui agora está a imagem images (3).jpeg -->
     <img src="assets/images (3).jpeg" style="width:100%; max-width:400px; border-radius:8px; margin-bottom:15px;">
     <h2>Raspadinha da Esperança</h2>
     <p>Prêmios até R$ 1.000,00 no Pix</p>
     <a href="pagamento.html" class="btn-jogar">JOGAR AGORA →</a>
   </div>
 
-  <!-- Botão flutuante de ajuda -->
   <div class="help-button" onclick="mostrarAjuda()">?</div>
 
-  <!-- Scripts -->
   <script>
     function atualizarGanhadorEPremio() {
       const nomes = ["Lucas Silva", "Maria Costa", "João Souza", "Ana Oliveira", "Carlos Lima", "Fernanda Rocha"];
@@ -145,7 +140,6 @@
       alert("Como funciona a Raspadinha:\n\nO jogo possui 9 raspadinhas e você tem 3 tentativas para encontrar prêmios escondidos. Boa sorte!");
     }
 
-    // Boas-vindas com nome do usuário
     const nomeUsuario = localStorage.getItem("usuario");
     if (nomeUsuario) {
       document.getElementById("boasVindas").innerText = `👋 Olá, ${nomeUsuario}! Seja bem-vindo(a) à Raspadinha da Esperança!`;
