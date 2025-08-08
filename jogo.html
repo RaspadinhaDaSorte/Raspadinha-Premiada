@@ -16,6 +16,32 @@
       min-height: 100vh;
     }
 
+    .top-bar {
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .saldo {
+      background: #111;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #0f0;
+      font-weight: bold;
+    }
+
+    .sair {
+      background: #ff3333;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
     h1 {
       color: #ffcc00;
       font-size: 30px;
@@ -72,6 +98,19 @@
       display: none;
       text-align: center;
       max-width: 400px;
+      margin-bottom: 20px;
+    }
+
+    #btnJogarNovamente {
+      display: none;
+      padding: 12px 20px;
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     footer {
@@ -84,7 +123,12 @@
 </head>
 <body>
 
-  <h1>🎉 Raspadinha da Esperança 🪙</h1>
+  <div class="top-bar">
+    <div class="saldo">💰 Saldo: R$ 10,00</div>
+    <a href="login.html" class="sair">Sair</a>
+  </div>
+
+  <h1>🎉 Raspadinha da Esperança 🎯</h1>
   <div id="tentativas">Tentativas restantes: 3</div>
 
   <div class="tabuleiro" id="tabuleiro">
@@ -92,6 +136,8 @@
   </div>
 
   <div id="resultado"></div>
+
+  <button id="btnJogarNovamente" onclick="jogarNovamente()">Jogar Novamente</button>
 
   <footer>
     Boa sorte! 🍀 Divirta-se com responsabilidade.<br>
@@ -102,19 +148,18 @@
     const tabuleiro = document.getElementById('tabuleiro');
     const tentativasEl = document.getElementById('tentativas');
     const resultadoEl = document.getElementById('resultado');
+    const btnJogarNovamente = document.getElementById('btnJogarNovamente');
 
     const totalQuadrados = 9;
     let tentativasRestantes = 3;
     let quadrados = [];
 
-    // Gerar valores aleatórios para os 9 quadrados
     const valores = [];
     for (let i = 0; i < totalQuadrados; i++) {
       const val = (Math.random() * 1000).toFixed(2).replace('.', ',');
       valores.push(`R$ ${val}`);
     }
 
-    // Criar quadrados com emoji inicial
     for (let i = 0; i < totalQuadrados; i++) {
       const div = document.createElement('div');
       div.classList.add('quadrado');
@@ -124,7 +169,6 @@
       quadrados.push(div);
     }
 
-    // Evento de clique
     tabuleiro.addEventListener('click', rasparQuadrado);
 
     function rasparQuadrado(e) {
@@ -159,7 +203,24 @@
           div.style.boxShadow = '0 0 15px #ffcc00';
         }
       }
+
+      // Mostra o botão para jogar novamente (somente se ainda não foi mostrado)
+      if (!sessionStorage.getItem("jogou")) {
+        btnJogarNovamente.style.display = 'inline-block';
+        sessionStorage.setItem("jogou", "1");
+      }
     }
+
+    function jogarNovamente() {
+      window.location.href = "pagamento.html";
+    }
+
+    // Evita que o botão apareça ao atualizar
+    window.addEventListener("load", () => {
+      if (sessionStorage.getItem("jogou")) {
+        btnJogarNovamente.style.display = "none";
+      }
+    });
   </script>
 </body>
 </html>

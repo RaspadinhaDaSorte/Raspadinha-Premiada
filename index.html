@@ -99,6 +99,11 @@
     <img src="assets/logo.png" alt="Logo Raspadinha">
   </header>
 
+  <!-- Mensagem de boas-vindas -->
+  <div id="boasVindas" style="background:#111; color:#0f0; text-align:center; padding:10px; font-size:18px;">
+    Bem-vindo!
+  </div>
+
   <!-- Banner atualizado com a imagem 688432b490c64-10.webp -->
   <div class="banner">
     <img src="assets/688432b490c64-10.webp" style="width:100%; max-width:500px; border-radius:10px;">
@@ -138,6 +143,12 @@
 
     function mostrarAjuda() {
       alert("Como funciona a Raspadinha:\n\nO jogo possui 9 raspadinhas e você tem 3 tentativas para encontrar prêmios escondidos. Boa sorte!");
+    }
+
+    // Boas-vindas com nome do usuário
+    const nomeUsuario = localStorage.getItem("usuario");
+    if (nomeUsuario) {
+      document.getElementById("boasVindas").innerText = `👋 Olá, ${nomeUsuario}! Seja bem-vindo(a) à Raspadinha da Esperança!`;
     }
 
     atualizarGanhadorEPremio();

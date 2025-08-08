@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Raspadinha</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+
+    .form-box {
+      background: #111;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 20px #222;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffcc00;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #222;
+      color: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #ffcc00;
+      color: #000;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #e6b800;
+    }
+
+    .toggle {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .toggle a {
+      color: #0ff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/logo.png" alt="Logo">
+
+  <div class="form-box" id="loginBox">
+    <h2>Entrar</h2>
+    <input type="text" id="loginUsername" placeholder="Usuário" />
+    <input type="password" id="loginPassword" placeholder="Senha" />
+    <button onclick="login()">Entrar</button>
+    <div class="toggle">Não tem conta? <a onclick="mostrarCadastro()">Cadastre-se</a></div>
+  </div>
+
+  <div class="form-box hidden" id="cadastroBox">
+    <h2>Cadastro</h2>
+    <input type="text" id="nomeCadastro" placeholder="Nome completo" />
+    <input type="text" id="usuarioCadastro" placeholder="Usuário" />
+    <input type="email" id="emailCadastro" placeholder="Email" />
+    <input type="password" id="senhaCadastro" placeholder="Senha" />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <div class="toggle">Já tem conta? <a onclick="mostrarLogin()">Entrar</a></div>
+  </div>
+
+  <script>
+    function mostrarCadastro() {
+      document.getElementById("loginBox").classList.add("hidden");
+      document.getElementById("cadastroBox").classList.remove("hidden");
+    }
+
+    function mostrarLogin() {
+      document.getElementById("cadastroBox").classList.add("hidden");
+      document.getElementById("loginBox").classList.remove("hidden");
+    }
+
+    function login() {
+      const username = document.getElementById("loginUsername").value.trim();
+      const password = document.getElementById("loginPassword").value;
+
+      if (username && password) {
+        localStorage.setItem("usuario", username);
+        window.location.href = "index.html"; // Redireciona para index.html
+      } else {
+        alert("Preencha todos os campos.");
+      }
+    }
+
+    function cadastrar() {
+      const nome = document.getElementById("nomeCadastro").value.trim();
+      const usuario = document.getElementById("usuarioCadastro").value.trim();
+      const email = document.getElementById("emailCadastro").value.trim();
+      const senha = document.getElementById("senhaCadastro").value;
+
+      if (nome && usuario && email && senha) {
+        localStorage.setItem("usuario", usuario);
+        alert("Cadastro realizado com sucesso!");
+        window.location.href = "index.html";
+      } else {
+        alert("Preencha todos os campos.");
+      }
+    }
+  </script>
+</body>
+</html>
