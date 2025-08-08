@@ -2,7 +2,6 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=login.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Raspadinha da Esperança</title>
   <style>
@@ -140,8 +139,13 @@
       alert("Como funciona a Raspadinha:\n\nO jogo possui 9 raspadinhas e você tem 3 tentativas para encontrar prêmios escondidos. Boa sorte!");
     }
 
+    // Verifica se o usuário está logado
     const nomeUsuario = localStorage.getItem("usuario");
-    if (nomeUsuario) {
+    if (!nomeUsuario) {
+      // Redireciona para login se não estiver logado
+      window.location.href = "login.html";
+    } else {
+      // Exibe a mensagem personalizada se estiver logado
       document.getElementById("boasVindas").innerText = `👋 Olá, ${nomeUsuario}! Seja bem-vindo(a) à Raspadinha da Esperança!`;
     }
 
